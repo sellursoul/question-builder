@@ -1,0 +1,27 @@
+<section class="modal">
+  <h2 mat-dialog-title>Question</h2>
+  <mat-dialog-content class="content-cont">
+    <form [formGroup]="questionForm">
+      <div class="questions" *ngFor="let question of questions">
+        <div>
+          <div class="title">{{question.questionText}}</div>
+          <div *ngIf="question.type === 'textarea'">
+            <textarea formControlName="textAnswer"></textarea>
+          </div>
+          <div class="question-checkboxes" *ngIf="question.type === 'checkbox'" formArrayName="checkboxes">
+            <mat-checkbox *ngFor="let option of question.options"
+                          (change)="onCheckChange($event, option)">{{option}}</mat-checkbox>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="showOther">
+        <label class="title">Input your answer</label>
+        <textarea formControlName="otherText"></textarea>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true" (click)="openModal()">Add new question</button>
+    <button mat-button [mat-dialog-close]="true" (click)="addAnswer()">Review my answers</button>
+  </mat-dialog-actions>
+</section>

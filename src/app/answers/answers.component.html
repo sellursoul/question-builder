@@ -1,0 +1,14 @@
+<section class="answers-cont">
+  <mat-card *ngFor="let item of data; let i = index" class="card">
+    <h2>Information</h2>
+    <div *ngFor="let answer of item">
+      <h4>{{answer.question}}</h4>
+      <div *ngIf="answer.answer">
+        <p>{{answer.answer}}</p>
+      </div>
+      <div *ngIf="answer.checkboxes">
+        <p *ngFor="let option of answer.checkboxes">{{option}}</p>
+      </div>
+    </div>
+  </mat-card>
+</section>

@@ -1,0 +1,13 @@
+.answers-cont {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  .card {
+    width: 25%;
+    padding: 0 1rem;
+  }
+}

@@ -1,0 +1,36 @@
+<section class="modal" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+  <h2 mat-dialog-title>Question</h2>
+  <mat-dialog-content class="content-cont">
+    <form [formGroup]="addNewQuestionForm">
+      <div>
+        <mat-form-field>
+          <mat-label>Type of question</mat-label>
+          <mat-select formControlName="questionFormat">
+            <mat-option value="textarea">Text</mat-option>
+            <mat-option value="checkbox">Options</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Question</mat-label>
+          <input matInput formControlName="questionText">
+        </mat-form-field>
+      </div>
+      <div *ngIf="addNewQuestionForm.get('questionFormat')?.value === 'checkbox'">
+        <label for="options">Answer Options:</label>
+        <div formArrayName="options" id="options">
+          <div *ngFor="let option of options.controls; let i = index" [formGroupName]="i">
+            <input type="text" formControlName="text" placeholder="Option text">
+            <button (click)="removeOption(i)">Remove</button>
+          </div>
+          <button (click)="addOption()" [disabled]="options.length >= 5">+Add Option</button>
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true">Close</button>
+    <button mat-button (click)="addQuestion()" [mat-dialog-close]="true">Add new</button>
+  </mat-dialog-actions>
+</section>
